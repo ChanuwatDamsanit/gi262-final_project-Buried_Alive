@@ -33,7 +33,7 @@ public class HealerDialogue : DialogueSequen
 
     }
 
-    public override void SelectChoice(int index)
+    public override void SelectChoice(int index) //no need
     {
         base.SelectChoice(index);
 

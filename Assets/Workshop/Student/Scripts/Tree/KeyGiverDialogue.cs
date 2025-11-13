@@ -31,7 +31,7 @@ public class KeyGiverDialogue : DialogueSequen
         tree = new DialogueTree(greeting);
     }
 
-    public override void SelectChoice(int index)
+    public override void SelectChoice(int index) // no need
     {
         base.SelectChoice(index);
 
@@ -56,7 +56,7 @@ public class KeyGiverDialogue : DialogueSequen
                 {
                     // Replace dialogue text to show "already have" message
                     currentNode = new DialogueNode("You already have a key. Don’t be greedy!");
-                    dialogueUI.ShowDialogue(currentNode);
+                    dialogueUI.ShowDialogue(currentNode); 
                 }
             }
             else

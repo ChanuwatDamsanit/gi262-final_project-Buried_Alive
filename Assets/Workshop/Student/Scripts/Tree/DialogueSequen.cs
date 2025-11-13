@@ -4,8 +4,9 @@ using UnityEngine;
 
 
     public class DialogueSequen : MonoBehaviour
-    {
-        public DialogueTree tree;
+{
+    //public Character player;
+    public DialogueTree tree;
         public DialogueNode currentNode;
         public DialogueUI dialogueUI; // ลาก DialogueUI Component มาใส่
 
@@ -48,7 +49,7 @@ using UnityEngine;
         DialogueNode greeting = new DialogueNode("You’re finally awake... You’re underground, traveler.");
         DialogueNode askHowToEscape = new DialogueNode("To get out, you must find two keys and bring them to the exit gate.");
         DialogueNode askWhereAmI = new DialogueNode("This place is called the Forgotten Depths. Few ever see the sunlight again.");
-        DialogueNode goodbye = new DialogueNode("Stay safe down here, and don’t lose hope.");
+        DialogueNode goodbye = new HealerDialogueNode("Stay safe down here, and don’t lose hope.");
 
         // --- Dialogue flow ---
         greeting.AddNext(askWhereAmI, "Where am I?");
@@ -63,7 +64,7 @@ using UnityEngine;
         }
 
     // **เมธอดใหม่สำหรับรับการเลือกจากปุ่ม UI**
-    public virtual void SelectChoice(int index)
+    public virtual void SelectChoice(int index) // fix this
     {
         var choiceTextKeys = new List<string>(currentNode.nexts.Keys);
 
@@ -78,6 +79,21 @@ using UnityEngine;
             if (currentNode.nexts.Count > 0)
             {
                 dialogueUI.ShowDialogue(currentNode); // แสดง Node ถัดไป
+                //if (currentNode.giveHp > 0) {
+                //    if (player != null)
+                //    {
+                //        player.energy = player.maxEnergy;  // restore full energy
+                //        Debug.Log(player.name + " is fully healed!");
+                //    }
+                //    else
+                //    {
+                //        Debug.LogWarning("No player assigned to HealerDialogue!");
+                //    }
+                }
+
+                if (currentNode is HealerDialogueNode) { 
+                
+                }
             }
             else
             {

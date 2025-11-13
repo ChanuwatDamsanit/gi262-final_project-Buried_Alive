@@ -7,6 +7,7 @@ using UnityEngine;
     {
         public string text;
         public Dictionary<string, DialogueNode> nexts = new Dictionary<string, DialogueNode>();
+        public string giveKeyName = "";
 
         public DialogueNode(string text)
         {
@@ -31,7 +32,24 @@ using UnityEngine;
         }
     }
 
-    public class DialogueTree
+       public class HealerDialogueNode : DialogueNode { 
+                public int giveHp = 0;
+
+            public HealerDialogueNode(string text) : base(text) { 
+    }
+        }
+
+ public class KeyGiverDialogueNode : DialogueNode //explain class structure video progress
+{
+    public int giveKey = 0;
+
+    public KeyGiverDialogueNode(string text) : base(text)
+    {
+
+    }
+}
+
+public class DialogueTree
     {
         public DialogueNode root;
 
