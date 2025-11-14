@@ -33,22 +33,24 @@ using UnityEngine;
     }
 
     public class HealerDialogueNode : DialogueNode 
-{ 
-            public int giveHp = 10;
+    {
+    //public int giveHp = 10;
+    public bool healsToMax = true;
 
-            public HealerDialogueNode(string text) : base(text) 
-    { 
+    public HealerDialogueNode(string text) : base(text) 
+    {
+        healsToMax = true;
+    }
 
     }
-        }
 
  public class KeyGiverDialogueNode : DialogueNode //explain class structure video progress
 {
     public int keysToGive = 2;
 
-    public KeyGiverDialogueNode(string text) : base(text)
+    public KeyGiverDialogueNode(string text, int keysToGive) : base(text)
     {
-
+        this.keysToGive = keysToGive;
     }
 }
 

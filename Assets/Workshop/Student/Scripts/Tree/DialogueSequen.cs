@@ -52,7 +52,7 @@ using Solution;
         DialogueNode greeting = new DialogueNode("You’re finally awake... You’re underground, traveler.");
         DialogueNode askHowToEscape = new DialogueNode("To get out, you must find two keys and bring them to the exit gate.");
         DialogueNode askWhereAmI = new DialogueNode("This place is called the Forgotten Depths. Few ever see the sunlight again.");
-        DialogueNode goodbye = new HealerDialogueNode("Stay safe down here, and don’t lose hope.");
+        DialogueNode goodbye = new DialogueNode("Stay safe down here, and don’t lose hope.");
 
         // --- Dialogue flow ---
         greeting.AddNext(askWhereAmI, "Where am I?");
@@ -100,32 +100,35 @@ using Solution;
                 }
             }
 
-            else if (currentNode is KeyGiverDialogueNode)
+            else if (currentNode is KeyGiverDialogueNode keyNode)
             {
-                // Get Inventory component
-                Inventory playerInventory = player != null ? player.GetComponent<Inventory>() : null;
-
-                if (playerInventory != null)
+                if (player != null)
                 {
-                    string keyName = "Key";   // or set this in KeyGiverDialogueNode if you want dynamic
-                    int keyAmount = 2;        // or from keyNode.keysToGive
-
-                    // Only give if player doesn’t already have it
-                    if (!playerInventory.HasItem(keyName, keyAmount))
+                    // Cache inventory if not already done
+                    Inventory playerInventory = player.GetComponent<Inventory>();
+                    if (playerInventory != null)
                     {
-                        playerInventory.AddItem(keyName, keyAmount);
-                        Debug.Log($"{player.name} received {keyAmount}x {keyName}!");
+                        // Only give if player doesn’t already have these keys
+                        if (!playerInventory.HasItem("Key", keyNode.keysToGive))
+                        {
+                            playerInventory.AddItem("Key", keyNode.keysToGive);
+                            Debug.Log($"{player.name} received {keyNode.keysToGive}x Key!");
+                        }
+                        else
+                        {
+                            // Show "already have" dialogue
+                            currentNode = new DialogueNode("You already have a key. Don’t be greedy!");
+                            dialogueUI.ShowDialogue(currentNode);
+                        }
                     }
                     else
                     {
-                        // Replace dialogue text to show "already have" message
-                        currentNode = new DialogueNode("You already have a key. Don’t be greedy!");
-                        dialogueUI.ShowDialogue(currentNode);
+                        Debug.LogWarning("Player has no Inventory component!");
                     }
                 }
                 else
                 {
-                    Debug.LogWarning("Player has no Inventory component!");
+                    Debug.LogWarning("KeyGiverDialogueNode triggered but no player assigned.");
                 }
             }
 
