@@ -10,12 +10,18 @@ using Solution;
         public DialogueNode currentNode;
         public DialogueUI dialogueUI; // ลาก DialogueUI Component มาใส่
         public Character player;
+    //
+    [Header("Audio")]
+    public AudioClip healSound;
+    public AudioClip keySound;
+    private AudioSource audioSource;
+
 
 
     public void Start()
         {
-
-            LoadConversations();
+        audioSource = GetComponent<AudioSource>();
+        LoadConversations();
 
         }
 
@@ -92,6 +98,11 @@ using Solution;
                 {
                     player.energy = player.maxEnergy;
                     Debug.Log($"{player.name} is fully healed by the healer!");
+
+                    if (healSound != null && audioSource != null)
+                    {
+                        audioSource.PlayOneShot(healSound);
+                    }
                 }
                 else
                 {
@@ -112,6 +123,11 @@ using Solution;
                         {
                             playerInventory.AddItem("Key", keyNode.keysToGive);
                             Debug.Log($"{player.name} received {keyNode.keysToGive}x Key!");
+
+                            if (keySound != null && audioSource != null)
+                            {
+                                audioSource.PlayOneShot(keySound);
+                            }
                         }
                         else
                         {

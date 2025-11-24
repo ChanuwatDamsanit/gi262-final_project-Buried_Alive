@@ -86,5 +86,15 @@ public class DialogueUI : MonoBehaviour
     {
         dialoguePanel.SetActive(false);
         ClearChoices();
+
+        // ✅ disable raycast blocking
+        CanvasGroup cg = GetComponent<CanvasGroup>();
+        if (cg != null)
+        {
+            cg.blocksRaycasts = false;
+            cg.interactable = false;
+        }
+
+        gameObject.SetActive(false); // ✅ IMPORTANT
     }
 }
