@@ -10,7 +10,7 @@ using Solution;
         public DialogueNode currentNode;
         public DialogueUI dialogueUI; // ลาก DialogueUI Component มาใส่
         public Character player;
-    //
+
     [Header("Audio")]
     public AudioClip healSound;
     public AudioClip keySound;
@@ -62,8 +62,6 @@ using Solution;
             if (currentNode.nexts.Count == 0)
             {
                 dialogueUI.ShowDialogue(currentNode); // แสดง Node ถัดไป
-
-
             }
 
             if (currentNode is HealerDialogueNode) 
