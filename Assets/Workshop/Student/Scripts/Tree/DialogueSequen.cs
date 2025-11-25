@@ -27,32 +27,6 @@ using Solution;
 
         protected virtual void LoadConversations()
         {
-        // NPC: Ah, traveler! What brings you to this old place?
-        //     |
-        //     +-- [1] Can you give me a quest?
-        //     |       |
-        //     |       +-- NPC: I have a task for you. There’s a beast in the woods. Can you take care of it?
-        //     |               |
-        //     |               +-- [1] I’m ready for anything!
-        //     |               |       |
-        //     |               |       +-- NPC: You're not ready for this yet. Come back when you're stronger.
-        //     |               |
-        //     |               +-- [2] Maybe later.
-        //     |                       |
-        //     |                       +-- NPC: Safe travels, adventurer.
-        //     |
-        //     +-- [2] Where is the village?
-        //     |       |
-        //     |       +-- NPC: Follow the road south, and you’ll reach the village.
-        //     |
-        //     +-- [3] How do I get to the forest?
-        //     |       |
-        //     |       +-- NPC: Head west, into the forest. But beware, it's dangerous.
-        //     |
-        //     +-- [4] Goodbye.
-        //             |
-        //             +-- NPC: Safe travels, adventurer.
-
         // Create the dialogue nodes
         DialogueNode greeting = new DialogueNode("You’re finally awake... You’re underground, traveler.");
         DialogueNode askHowToEscape = new DialogueNode("To get out, you must find two keys and bring them to the exit gate.");

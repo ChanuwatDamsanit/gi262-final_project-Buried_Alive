@@ -9,7 +9,6 @@ namespace Solution
         public int energy;
         public int maxEnergy;
         public int AttackPoint;
-        //public int keyCount = 0;
 
         protected bool isAlive;
         protected bool isFreeze;
